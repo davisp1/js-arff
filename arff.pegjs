@@ -60,7 +60,8 @@
 }
 
 start =
-	separator?
+	(ws* nl)*
+	description:description?
 	relation:relation?
 	separator
 	attribute
@@ -73,6 +74,7 @@ start =
 	separator? {
 		return {
 			relation: relation,
+			description: description,
 			attributes: attributes,
 			data: data
 		};
@@ -81,9 +83,17 @@ start =
 //====================================================================
 // Comment
 
-separator = (nl / comment nl)+
+separator = (nl / comment nl / ws+ nl)+
 
 comment = '%' (!nl .)*
+
+commentline = '%' ws? string:(string / ws)* nl+{
+	return string.join("");
+}
+
+description = description:(commentline)*{
+	return description.join("\n");
+}
 
 //====================================================================
 // Relation
@@ -126,7 +136,7 @@ date 'date'
 		return 'date';
 	}
 
-class 'class' = '{' first:string rest:(',' value:string { return value; })* '}' {
+class 'class' = '{' first:string rest:(virgule value:string { return value; })* '}' {
 	rest.unshift(first);
 	return {
 		type: 'enum',
@@ -141,7 +151,7 @@ data = '@data'i values:(separator datum:datum { return datum; })* {
 	return values;
 }
 
-datum = first:value rest:(',' value:value { return value; })* {
+datum = first:value rest:(virgule value:value { return value; })* {
 	rest.unshift(first);
 	return makeDatum(rest);
 }
@@ -195,3 +205,8 @@ HEXDIG = [0-9a-f]i
 nl 'new line' = '\r\n' / '\n' / '\r'
 
 ws 'whitespace' = [ \t]
+
+virgule 'virgule' = _ ',' _
+
+// optional whitespace
+_  = [ \t\r\n]*

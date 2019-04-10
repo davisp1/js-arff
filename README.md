@@ -36,6 +36,8 @@ For the folling `data.arff`:
 
 ```arff
 % My ARFF file.
+% Data.
+
 @RELATION user
 
 @ATTRIBUTE name       STRING
@@ -52,6 +54,7 @@ It will give this output:
 ```js
 {
   relation: 'user',
+  description: 'My ARFF file.\nData',
   attributes: [
     {
       name: 'name',
@@ -95,6 +98,9 @@ console.log(arff.format(require('./relation')));
 Which will display:
 
 ```arff
+% My ARFF file.
+% Data.
+
 @RELATION foo
 
 @ATTRIBUTE date date

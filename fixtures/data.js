@@ -1,6 +1,11 @@
 module.exports = {
   relation: 'foo',
+  description: '\n\nComments starts a %.\nA relation MAY be named.',
   attributes: [
+    {
+      name: 'numeric',
+      type: 'numeric'
+    },
     {
       name: 'date',
       type: 'date'
@@ -9,10 +14,6 @@ module.exports = {
       name: 'dateWithFormat',
       type: 'date',
       format: 'MM/DD/YY'
-    },
-    {
-      name: 'numeric',
-      type: 'numeric'
     },
     {
       name: 'string',
@@ -24,7 +25,9 @@ module.exports = {
       values: [
         'foo',
         'bar',
-        'baz'
+        'baz',
+        'dfgdfgdg',
+        'sdgsdgsgds'
       ]
     },
     {
@@ -39,13 +42,16 @@ module.exports = {
     {
       date: new Date(Date.UTC(2014, 11, 16, 19, 42, 1)),
       dateWithFormat: new Date(Date.UTC(2015, 5, 23)),
-      numeric: 3.259,
       string: 'can have spaces',
       enumerate: 'bar'
     },
     {
       date: new Date(Date.UTC(2014, 11, 16, 19, 42, 1)),
-      numeric: 42
+      numeric: 42,
+      string: 'another example'
+    },
+    {
+      numeric: 3.259
     }
   ]
 }

@@ -31,6 +31,13 @@ function isDefined (val) {
 
 exports.format = exports.stringify = function format (relation) {
   var arff = []
+  var description = relation.description
+  if (isDefined(description) && description !== '') {
+    forEach(description.split('\n'), function (line) {
+      arff.push('% ', line, EOL)
+    })
+    arff.push(EOL)
+  }
 
   var name = relation.relation
   if (isDefined(name)) {

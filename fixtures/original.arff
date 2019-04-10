@@ -1,18 +1,22 @@
+
+
+%
+% 
 % Comments starts a %.
 
 % A relation MAY be named.
 @RELATION foo
 
 % Default date format is YYYY-MM-DD'T'HH:mm:ss
+@ATTRIBUTE numeric INTEGER    
 @ATTRIBUTE date date
-@ATTRIBUTE dateWithFormat date "MM/DD/YY"
-@ATTRIBUTE numeric numeric
-@ATTRIBUTE string string
-@ATTRIBUTE enumerate {foo,"bar",'baz'}
+@ATTRIBUTE dateWithFormat date "MM/DD/YY"   
+@ATTRIBUTE string string        
+@ATTRIBUTE enumerate {foo,bar , 'baz', 'dfgdfgdg'   ,    'sdgsdgsgds'}
 @ATTRIBUTE rawStringAtTheEndOfEnumerate {rawString}
 
 @DATA
-2014-12-16T19:42:01,06/23/15,3.259,'can have spaces',bar
-
+?,2014-12-16T19:42:01,06/23/15,'can have spaces',bar
 % `?` denote an unknown value, similarly missing values are unknown.
-2014-12-16T19:42:01,?,42
+42,2014-12-16T19:42:01,wrongData,"another example",?
+3.259,?,?,?,?
