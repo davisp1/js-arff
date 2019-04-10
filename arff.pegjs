@@ -35,7 +35,13 @@
 
 			var type = attr.type;
 			if (type === 'date') {
-				value = moment.utc(value, attr.format).toDate();
+				var date = moment.utc(value, attr.format);
+				if (date.isValid()) {
+					value = date.toDate();
+				}
+				else {
+					return;
+				}
 			} else if (type === 'numeric') {
 				value = +value;
 			} else if (type === 'enum') {
