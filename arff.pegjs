@@ -105,6 +105,12 @@ type
 	/ 'numeric'i {
 		return 'numeric';
 	}
+	/ 'integer'i {
+		return 'numeric';
+	}
+	/ 'real'i {
+		return 'numeric';
+	}
 	/ 'string'i {
 		return 'string';
 	}
